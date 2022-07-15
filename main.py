@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 
 import futu as ft
 import pandas as pd
-timedelta(days=1, hours=11, minutes=30)
 # code  time_key open close high low  pe_ratio  turnover_rate volume turnover  change_rate  last_close
 
 pd.set_option('display.width', 400)
@@ -15,7 +14,7 @@ quote_ctx.start()
 TIME_LAYOUT = '%Y-%m-%d %H:%M:%S'
 CONCATE_SYMBOL = '____'
 
-market = ft.Market.SH
+# market = ft.Market.SH
 # code_list = ['SH.600089', 'SH.600036', 'SH.601088']
 code_list = ['SH.601985',  'SH.601899', 'SH.600089', 'SH.600584']
 begin = '2022-01-01'
@@ -42,13 +41,13 @@ sum = 0.0
 for day, rows in day_dict.items():
     df = pd.DataFrame(rows)
     df.reset_index(inplace=True)
-    # print(df)
+    print(df)
     # 控制取最大涨跌幅还是最小涨跌幅
     idx = df['change_rate'].idxmin()
     code = df.iloc[idx]['code']
     buy = df.iloc[idx]['close']
 
-    time = datetime.strptime(day, TIME_LAYOUT) + timedelta(days=1, hours=10, minutes=30)
+    time = datetime.strptime(day, TIME_LAYOUT) + timedelta(days=1, hours=15, minutes=00)
     key = code + CONCATE_SYMBOL + time.strftime(TIME_LAYOUT)
 
     while key not in hour_dict:
